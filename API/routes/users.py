@@ -17,8 +17,6 @@ def index():
     return response_with(resp.SUCCESS_200, value={"datas": datas})
 
 @users_blueprint.route('/users', methods=['POST'])
-@jwt_required()
-@admin_access
 def create():
     data = request.json
     isSucess = User.create(data)
