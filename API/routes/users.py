@@ -21,7 +21,7 @@ def create():
     data = request.json
     isSucess = User.create(data)
     if isSucess:
-        return response_with(resp.CREATED_201, message="Your User has been recorded")
+        return response_with(resp.CREATED_201, message="New User has been recorded")
     return response_with(resp.SERVER_ERROR_500, message="Something wrong with your code")
 
 @users_blueprint.route('/users/<user_id>', methods=['GET'])
@@ -38,7 +38,7 @@ def update(user_id):
     data = request.json
     isSucess = User.update(user_id, data)
     if isSucess:
-        return response_with(resp.SUCCESS_200, message="Your User has been successfuly updated")
+        return response_with(resp.SUCCESS_200, message="User has been successfuly updated")
     return response_with(resp.SERVER_ERROR_500, message="Something wrong with your code")
 
 @users_blueprint.route('/users/<user_id>', methods=['DELETE'])
@@ -47,5 +47,5 @@ def update(user_id):
 def delete(user_id):
     isSucess = User.delete(user_id)
     if isSucess:
-        return response_with(resp.SUCCESS_200, message="Your User has been successfuly deleted")
+        return response_with(resp.SUCCESS_200, message="User has been successfuly deleted")
     return response_with(resp.SERVER_ERROR_500, message="Something wrong with your code")

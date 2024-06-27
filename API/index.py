@@ -12,6 +12,7 @@ from flask_jwt_extended import (
 )
 import os
 from dotenv import load_dotenv
+from datetime import timedelta
 
 load_dotenv()
 
@@ -28,6 +29,8 @@ def create_app():
 
     app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql://{username}:{password}@{host}/{database}'
     app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access', 'refresh']
+    app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=5)
+    app.config["JWT_REFRESH_TOKEN_EXPIRES"] = timedelta(days=7)
     
     db.init_app(app)
     jwt = JWTManager(app)
