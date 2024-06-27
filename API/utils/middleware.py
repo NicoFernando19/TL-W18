@@ -8,9 +8,9 @@ from flask_jwt_extended import (
 
 def admin_access(fn):
     @wraps(fn)
-    def f_canopy_admin_access(*args, **kwargs):
+    def f_admin_access(*args, **kwargs):
         if current_user['role'] == Role.Admin.value:
             res = fn(*args, **kwargs)
             return res
         return response_with(resp.UNAUTHORIZED_403)
-    return f_canopy_admin_access
+    return f_admin_access
